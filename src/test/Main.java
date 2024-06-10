@@ -14,8 +14,8 @@ public class Main
 			int[] arr1 = ThreadedQuick.generarArrayAleatorio(cantidadElementos, 0, cantidadElementos*10);
 
 			// Mostrar el array antes de ordenar
-			System.out.println("Array antes de ordenar:");
-			ThreadedQuick.mostrarArray(arr1);
+			//System.out.println("Array antes de ordenar:");
+			//ThreadedQuick.mostrarArray(arr1);
 			
 			// Crear una instancia de ThreadedQuick y ordenar el array
 			
@@ -39,8 +39,8 @@ public class Main
 			long duration = (endTime - startTime);
 
 			// Mostrar el array después de ordenar
-			System.out.println("\nArray después de ordenar:");
-			ThreadedQuick.mostrarArray(arr1);
+			//System.out.println("\nArray después de ordenar:");
+			//ThreadedQuick.mostrarArray(arr1);
 
 			// Mostrar el tiempo transcurrido
 			System.out.println("\nQuicksort con hilos terminado. Tiempo transcurrido: " + duration + " ns");

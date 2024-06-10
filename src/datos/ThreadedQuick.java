@@ -1,7 +1,6 @@
 package datos;
 
 import java.util.Random;
-import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -86,13 +85,19 @@ public class ThreadedQuick implements Runnable {
 
         // Si la partición es lo suficientemente grande, paralelizar
         if (len > minParitionSize) {
-            ThreadedQuick quick = new ThreadedQuick(minParitionSize, array, start, storeIndex - 1);
+            /*ThreadedQuick quick = new ThreadedQuick(minParitionSize, array, start, storeIndex - 1);
             Future<?> future = executor.submit(quick);
-            quicksort(array, storeIndex + 1, end);
+            quicksort(array, storeIndex + 1, end);*/
+            ThreadedQuick leftQuick = new ThreadedQuick(minParitionSize, array, start, storeIndex - 1);
+            ThreadedQuick rightQuick = new ThreadedQuick(minParitionSize, array, storeIndex + 1, end);
+            Future<?> leftFuture = executor.submit(leftQuick);
+            Future<?> rightFuture = executor.submit(rightQuick);
 
             // Esperar a que el subproceso finalice
             try {
-                future.get(1000, TimeUnit.SECONDS);
+                //future.get(1000, TimeUnit.SECONDS);
+                leftFuture.get(1000, TimeUnit.SECONDS);
+                rightFuture.get(1000, TimeUnit.SECONDS);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
